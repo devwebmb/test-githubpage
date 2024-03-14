@@ -1,3 +1,3 @@
 const btn = document.getElementById('btn');
 
-console.log("test");
+btn.addEventListener("click", alert("tu as cliqué"));
