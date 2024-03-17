@@ -1,0 +1,200 @@
+/************************************************
+     CSS RESET
+************************************************/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/****** End CSS reset ********/
+
+/*global*/
+body {
+  background-color: #42cbe2;
+}
+
+@font-face {
+  font-family: "BebasNeue-regular";
+  src: url(./assets/fonts/BebasNeue-Regular.ttf);
+}
+/*fin global*/
+
+/*étape 1*/
+#Logo {
+  display: flex;
+  justify-content: center;
+}
+
+.title-h4 {
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 1.938rem;
+  font-family: "BebasNeue-Regular";
+}
+
+.title-h4-border {
+  font-family: "BebasNeue-Regular";
+  font-size: 1.938rem;
+  text-align: center;
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: 0.7px white;
+  /* -webkit-text-fill-color: white; voir en cas de non prise en charge du navigateur */
+}
+
+#PlayerRoulette {
+  height: 350px;
+  width: 350px;
+  background-color: white;
+  margin: auto;
+ background: linear-gradient(white, white) padding-box,
+              linear-gradient(to right, #7D67D9, #08D3F7) border-box;
+  border-radius: 50em;
+  border: 2px solid transparent;
+}
+
+#BtnEtape1Container {
+    display: flex;
+    justify-content: center;
+}
+
+#BtnEtape1 {
+    font-family: "BebasNeue-Regular";
+    font-size: 1.7rem;
+    color:#42CBE2 ;
+    border-radius: 50%;
+    padding: 30px 100px;
+    border: none;
+    background-color: white;
+}
+
+/*étape 1*/
