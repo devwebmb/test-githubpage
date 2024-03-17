@@ -54,13 +54,12 @@
             var prenomError = document.getElementById("prenomError");
             var acceptationError = document.getElementById("acceptationError");
 
-            // Efface les messages d'erreur précédents
             emailError.textContent = "";
             telError.textContent = "";
             prenomError.textContent = "";
             acceptationError.textContent = "";
 
-            // Valider chaque champ
+           
             if (!emailField.value) {
                 emailError.textContent = "Ce champ est obligatoire";
                 emailField.classList.add("error");
