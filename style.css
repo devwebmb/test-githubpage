@@ -139,6 +139,11 @@ table {
 /*global*/
 body {
   background-color: #42cbe2;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
 }
 
 @font-face {
@@ -176,25 +181,51 @@ body {
   width: 350px;
   background-color: white;
   margin: auto;
- background: linear-gradient(white, white) padding-box,
-              linear-gradient(to right, #7D67D9, #08D3F7) border-box;
+  background: linear-gradient(white, white) padding-box,
+    linear-gradient(to right, #7d67d9, #08d3f7) border-box;
   border-radius: 50em;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
 }
 
 #BtnEtape1Container {
-    display: flex;
-    justify-content: center;
+  display: inline-flex;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 #BtnEtape1 {
-    font-family: "BebasNeue-Regular";
-    font-size: 1.7rem;
-    color:#42CBE2 ;
-    border-radius: 50%;
-    padding: 30px 100px;
-    border: none;
-    background-color: white;
+  font-family: "BebasNeue-Regular";
+  font-size: 1.7rem;
+  color: #42cbe2;
+  border-radius: 50%;
+  padding: 30px 100px;
+  border: none;
+  background-color: white;
 }
 
-/*étape 1*/
+ #BtnEtape1::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 50%;
+  border: 1px solid #7D67D9; 
+  transform: rotate(-2deg);
+}
+
+
+#BtnEtape1::after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  transform: rotate(1deg);
+  border: 2px solid white; 
+  border-radius: 50%; 
+} 
+/*fin étape 1*/
