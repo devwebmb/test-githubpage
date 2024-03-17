@@ -23,13 +23,13 @@
             Tente de gagner...
         </h4>
         <!--jeu roulette-->
-        <div id="PlayerRoulette">
-            <img src="./assets/images/e-liquide-10ml.png">
-            <img src="./assets/images/e-liquide-50ml.png" alt="">
-            <img src="./assets/images/kit-solo.png" alt="">
-            <img src="./assets/images/perdu.png" alt="">
-            <img src="./assets/images/pod.png" alt="">
-            <img src="./assets/images/x-bar-v2.png" alt="">
+        <div id="PlayerRoulette" class="relative">
+            <img src="./assets/images/e-liquide-10ml.png" class="img-roulette absolute">
+            <img src="./assets/images/e-liquide-50ml.png" class="img-roulette absolute">
+            <img src="./assets/images/kit-solo.png" class="img-roulette absolute">
+            <img src="./assets/images/perdu.png" class="img-roulette absolute">
+            <img src="./assets/images/pod.png" class="img-roulette absolute">
+            <img src="./assets/images/x-bar-v2.png" class="img-roulette absolute">
         </div>
 
         <!--Bouton pour afficher produit-->
@@ -37,42 +37,90 @@
             <button id="BtnEtape1">
                 Appui sur l'image pour afficher ton produit
             </button>
-        </div><a href="./form.html">vers form</a>
+        </div>
+
+        <div id="CouponLinkContainer">
+            <h4 class="title-h4-border">Je récupère mon coupon</h4>
+            <img src="./assets/images/DownloadIcon.png" id="couponLink">
+        </div>
     </div>
 
     <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var playerRoulette = document.getElementById("PlayerRoulette");
+            var images = playerRoulette.getElementsByTagName("img");
+            var currentIndex = 0;
+            var intervalId;
+            var button = document.getElementById("BtnEtape1");
+            var couponLink = document.getElementById("CouponLinkContainer");
+            var link = document.getElementById("couponLink")
+
+            var imageTexts = [
+                " 1 E-liquide 10 ml",
+                " 1 E-liquide 50 ml",
+                " 1 Kit solo click&puff",
+                "Une prochaine fois ! ",
+                "1 Pod Click&Puff",
+                "  1 X-bar V2  "
+            ];
+
+            function scrollImages() {
+                images[currentIndex].style.display = "none";
+                currentIndex = (currentIndex + 1) % images.length;
+                images[currentIndex].style.display = "block";
+                couponLink.style.display = "none"
+            }
+
+            intervalId = setInterval(scrollImages, 40);
+
+            playerRoulette.addEventListener("click", function () {
+                clearInterval(intervalId);
+                for (var i = 0; i < images.length; i++) {
+                    images[i].style.display = "none";
+                }
+                images[currentIndex].style.display = "block";
+                couponLink.style.display = "block";
+                button.textContent = imageTexts[currentIndex];
+            });
+
+            link.addEventListener('click', () => {
+                window.location.href = "./form.html?" + imageTexts[currentIndex]
+            })
+        });
         // document.addEventListener("DOMContentLoaded", function () {
         //     var playerRoulette = document.getElementById("PlayerRoulette");
         //     var images = playerRoulette.getElementsByTagName("img");
-        //     var isSpinning = false;
+        //     var animationDuration = 2000; // Durée de l'animation en millisecondes
+        //     var initialTop = -100; // Position initiale des images en pourcentage (au-dessus de la div)
 
-        //     // Function to spin the roulette
-        //     function spinRoulette() {
-        //         if (!isSpinning) {
-        //             isSpinning = true;
-        //             var interval = setInterval(function () {
-        //                 for (var i = 0; i < images.length; i++) {
-        //                     var currentPosition = parseFloat(images[i].style.top) || 0;
-        //                     var newPosition = currentPosition + 1;
-        //                     images[i].style.top = newPosition + "px";
-        //                 }
-        //             }, 10);
+        //     // Fonction pour démarrer l'animation de chaque image
+        //     function startAnimation(index) {
+        //         images[index].style.top = initialTop + "%"; // Réinitialiser la position de l'image au-dessus de la div
+        //         setTimeout(function () {
+        //             images[index].style.transition = "top " + animationDuration / 1000 + "s ease-in-out"; // Définir la transition CSS
+        //             images[index].style.top = "200%"; // Déplacer l'image vers le bas de la div
 
-        //             // Stop spinning after 2 seconds (2000 milliseconds)
-        //             setTimeout(function () {
-        //                 clearInterval(interval);
-        //                 isSpinning = false;
-        //             }, 2000);
+        //             // Si c'est la dernière image, recommencer à la première image
+        //             if (index === images.length - 1) {
+        //                 setTimeout(startAnimations, animationDuration);
+        //             }
+        //         }, index * animationDuration); // Démarrer l'animation de chaque image avec un délai basé sur l'index
+        //     }
+
+        //     // Fonction pour démarrer les animations pour toutes les images
+        //     function startAnimations() {
+        //         for (var i = 0; i < images.length; i++) {
+        //             startAnimation(i); // Démarrer l'animation de chaque image
         //         }
         //     }
 
-        //     // Add click event listener to stop spinning on click
-        //     playerRoulette.addEventListener("click", function () {
-        //         if (isSpinning) {
-        //             spinRoulette();
-        //         }
-        //     });
+        //     // Appeler la fonction pour démarrer les animations
+        //     startAnimations();
         // });
+
+
+
     </script>
 </body>
 

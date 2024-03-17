@@ -241,6 +241,7 @@ justify-content: center;
   padding: 30px 100px;
   border: none;
   background-color: white;
+  min-width: 300px;
 }
 
 #BtnEtape1::before {
@@ -421,3 +422,31 @@ justify-content: center;
     cursor: pointer;
 }
 /*fin CGV*/
+
+/*jeu roulette*/
+ .img-roulette {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+} 
+
+ #PlayerRoulette img:not(:first-child) {
+    display: none;
+}  
+
+ #PlayerRoulette {
+  overflow: hidden;
+}
+
+#CouponLinkContainer {
+  margin-top: 35px;
+}
+
+#CouponLinkContainer img {
+  left: 50%;
+  position: relative;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+
+/*fin jeu roulette*/
