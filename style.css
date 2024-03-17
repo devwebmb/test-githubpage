@@ -139,16 +139,51 @@ table {
 /*global*/
 body {
   background-color: #42cbe2;
-  height: 100vh;
+  /* height: 100vh; */
   display: flex;
   justify-content: center;
   align-items: center;
   vertical-align: middle;
+  max-width: 800px;
+  margin: auto;
 }
 
 @font-face {
   font-family: "BebasNeue-regular";
   src: url(./assets/fonts/BebasNeue-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Inter-Regular";
+  src: url(./assets/fonts/static/Inter-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Poppins-Regular";
+  src: url(./assets/fonts/Poppins-Regular.ttf);
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+#Etape1Container {
+        height: 100vh;  
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+
+#Etape2Container {
+    height: 100vh;  
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 /*fin global*/
 
@@ -156,6 +191,7 @@ body {
 #Logo {
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
 .title-h4 {
@@ -164,6 +200,7 @@ body {
   text-align: center;
   font-size: 1.938rem;
   font-family: "BebasNeue-Regular";
+  margin-bottom: 5px;
 }
 
 .title-h4-border {
@@ -173,6 +210,7 @@ body {
   text-transform: uppercase;
   color: transparent;
   -webkit-text-stroke: 0.7px white;
+  margin-bottom: 20px;
   /* -webkit-text-fill-color: white; voir en cas de non prise en charge du navigateur */
 }
 
@@ -180,11 +218,12 @@ body {
   height: 350px;
   width: 350px;
   background-color: white;
-  margin: auto;
+  margin:20px auto;
   background: linear-gradient(white, white) padding-box,
     linear-gradient(to right, #7d67d9, #08d3f7) border-box;
   border-radius: 50em;
   border: 1px solid transparent;
+  margin-bottom: 20px;
 }
 
 #BtnEtape1Container {
@@ -204,7 +243,7 @@ body {
   background-color: white;
 }
 
- #BtnEtape1::before {
+#BtnEtape1::before {
   content: "";
   position: absolute;
   top: -2px;
@@ -212,10 +251,9 @@ body {
   right: -2px;
   bottom: -2px;
   border-radius: 50%;
-  border: 1px solid #7D67D9; 
+  border: 1px solid #7d67d9;
   transform: rotate(-2deg);
 }
-
 
 #BtnEtape1::after {
   content: "";
@@ -225,7 +263,161 @@ body {
   right: 0px;
   bottom: 0px;
   transform: rotate(1deg);
-  border: 2px solid white; 
-  border-radius: 50%; 
-} 
+  border: 2px solid white;
+  border-radius: 50%;
+}
 /*fin étape 1*/
+
+/*etape2*/
+#ContactForm {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+#ContactForm input {
+  display: block;
+  width: 100%;
+  padding: 8px 10px 8px 35px;
+  border-radius: 25px;
+  border: none;
+}
+
+::placeholder {
+  font-family: "Poppins-Regular";
+}
+
+#CheckboxCgv {
+  display: flex;
+  align-items: center;
+  margin-left: 15%;
+  margin-top: 35px;
+}
+
+#CheckboxCgv input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 0;
+}
+
+#CheckboxCgv a {
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+  font-family: "Inter-Regular";
+}
+
+#ContactForm button {
+  display: block;
+  margin: auto;
+  border: none;
+  background-color: white;
+  color: #42cbe2;
+  font-family: "Bebas-Neue";
+  font-size: 1.5em;
+  padding: 7px 20px;
+  border-radius: 25px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+#email {
+  background-image: url("./assets/images/MailIcon.png");
+  background-repeat: no-repeat;
+  background-position: 13px center;
+  background-size: 15px;
+}
+
+#email:focus {
+  outline: none;
+  border: 2px solid #7d67d9;
+  background-image: url("./assets/images/mailIconGradient.png");
+}
+
+#tel {
+  background-image: url("./assets/images/PhoneIcon.png");
+  background-repeat: no-repeat;
+  background-position: 13px center;
+  background-size: 10px;
+  margin-top: 35px;
+}
+
+#tel:focus {
+  outline: none;
+  border: 2px solid #7d67d9;
+  background-image: url("./assets/images/PhoneIconGradient.png");
+}
+#prenom {
+  background-image: url("./assets/images/UserIcon.png");
+  background-repeat: no-repeat;
+  background-position: 13px center;
+  background-size: 15px;
+  margin-top: 35px;
+}
+
+#prenom:focus {
+  outline: none;
+  border: 2px solid #7d67d9;
+  background-image: url("./assets/images/UserIconGradient.png");
+}
+
+/*erreurs formulaires*/
+
+.error-message {
+  color: #D73939;
+  font-size: 1.1em;
+  line-height: 2em;
+}
+.error-message-cgv {
+  color: #D73939;
+  font-size: 1.1em;
+  line-height: 2em;
+ margin-left: 65px;
+ margin-bottom: 30px;
+}
+
+.error {
+     border: 2px solid #D73939!important;
+}
+#email.error {
+      background-image: url("./assets/images/MailErrorIcon.png");
+}
+#tel.error {
+      background-image: url("./assets/images/PhoneIconError.png");
+}
+#prenom.error {
+      background-image: url("./assets/images/MailErrorIcon.png");
+}
+
+/*fin etape 2*/
+
+/*CGV*/
+
+#CgvContainer p {
+    margin-top: 35px;
+    font-family: "Poppins-Regular";
+    font-size: 1.3em;
+    text-align: justify;
+}
+
+#CgvContainer #Logo {
+    margin-top: 35px !important;
+}
+
+#CgvFirstParagraph {
+    width: 60%;
+    margin: auto;
+    text-align: center !important;
+}
+
+#CgvContainer p:last-of-type {
+    margin-bottom: 35px;
+}
+
+#ReturnIcon {
+    top: 20px;
+    right: 10%;
+    cursor: pointer;
+}
+/*fin CGV*/

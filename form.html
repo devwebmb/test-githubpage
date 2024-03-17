@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js"></script>
+
+    <title>Formulaire X-BAR</title>
+</head>
+
+<body>
+    <div id="Etape2Container">
+        <div id="Logo">
+            <img src="./assets/images/Logo.png" alt="Logo X-BAR">
+        </div>
+        <!--Titres h4-->
+        <h4 class="title-h4">
+            Renseigne tes co0rdonnées et récupère ton code<br /> pour ta prochaine commande.
+        </h4>
+        <h4 class="title-h4-border">
+            valable 1 mois
+        </h4>
+
+        <form id="ContactForm" action="#" method="POST" novalidate>
+            <input type="email" id="email" name="email" required placeholder="Adresse mail">
+            <span class="error-message" id="emailError"></span>
+
+            <input type="tel" id="tel" name="tel" required pattern="[0-9]{10}" placeholder="Numéro de téléphone">
+            <span class="error-message" id="telError"></span>
+
+            <input type="text" id="prenom" name="prenom" required placeholder="Prénom">
+            <span class="error-message" id="prenomError"></span>
+
+            <div id="CheckboxCgv">
+                <input type="checkbox" id="acceptation" name="acceptation" required>
+                <a href="/cgv.html">Accepter les conditions générales</a>
+            </div>
+            <span class="error-message-cgv" id="acceptationError"></span>
+            <button type="submit">Recevoir mon coupon</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("ContactForm").addEventListener("submit", function (event) {
+            var emailField = document.getElementById("email");
+            var telField = document.getElementById("tel");
+            var prenomField = document.getElementById("prenom");
+            var acceptationField = document.getElementById("acceptation");
+
+            var emailError = document.getElementById("emailError");
+            var telError = document.getElementById("telError");
+            var prenomError = document.getElementById("prenomError");
+            var acceptationError = document.getElementById("acceptationError");
+
+            // Efface les messages d'erreur précédents
+            emailError.textContent = "";
+            telError.textContent = "";
+            prenomError.textContent = "";
+            acceptationError.textContent = "";
+
+            // Valider chaque champ
+            if (!emailField.value) {
+                emailError.textContent = "Ce champ est obligatoire";
+                emailField.classList.add("error");
+                event.preventDefault();
+            }
+
+            if (!telField.value) {
+                telError.textContent = "Ce champ est obligatoire";
+                telField.classList.add("error");
+                event.preventDefault();
+            }
+
+            if (!prenomField.value) {
+                prenomError.textContent = "Ce champ est obligatoire";
+                prenomField.classList.add("error");
+                event.preventDefault();
+            }
+
+            if (!acceptationField.checked) {
+                acceptationError.textContent = "Vous devez accepter les CGV";
+                acceptationField.classList.add("error");
+                event.preventDefault();
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var inputs = document.querySelectorAll("input, textarea");
+            inputs.forEach(function (input) {
+                input.addEventListener("input", function () {
+                    this.classList.remove("error");
+                    var errorMessageId = this.id + "Error";
+                    var errorMessage = document.getElementById(errorMessageId);
+                    errorMessage.textContent = "";
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

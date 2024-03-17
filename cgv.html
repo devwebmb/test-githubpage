@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>CGV</title>
+</head>
+
+<body>
+    <div id="CgvContainer" class="relative">
+        <img src="./assets/images/ReturnIcon.png" class="absolute" id="ReturnIcon">
+        <div id="Logo">
+            <img src="./assets/images/Logo.png" alt="Logo X-BAR">
+        </div>
+        <!--Titres h4-->
+        <h4 class="title-h4">
+            Conditions Générales pour le jeu X-Bar
+        </h4>
+        <p id="CgvFirstParagraph">
+            En participant au jeu, vous acceptez automatiquement les présentes conditions générales. Si vous n'acceptez
+            pas ces
+            conditions, veuillez ne pas participer au jeu.
+        </p>
+        <p>Éligibilité : Le jeu est ouvert à toute personne résidant en France métropolitaine, âgée de plus de 18 ans.
+        </p>
+        <p>Participation : La participation au jeu est gratuite et sans obligation d'achat. Pour participer, les
+            participants
+            doivent remplir le formulaire de participation en fournissant leurs coordonnées complètes et valides.</p>
+        <p>Limitation de Participation : Chaque participant est autorisé à ne jouer q’une fois seule fois. Les
+            participations
+            multiples ne seront pas prises en compte et pourront entraîner la disqualification du participant.</p>
+        <p>Produits et Récompenses : Les produits offerts dans le cadre du jeu sont soumis à disponibilité et peuvent
+            être sujets à
+            des changements sans préavis. Le gain sera reçu par e-mail sous forme de code valable pendant un mois à
+            insérer lors de
+            la prochaine commande afin d'accéder aux gains.</p>
+        <p>Protection des Données Personnelles : Les données personnelles collectées dans le cadre du jeu seront
+            utilisées
+            uniquement pour l'administration du jeu et ne seront pas partagées avec des tiers sans consentement
+            préalable. Pour plus
+            d'informations, veuillez consulter notre Politique de Confidentialité.</p>
+        <p>Modification ou Annulation du Jeu : X-bar se réserve le droit de modifier, annuler ou suspendre le jeu en cas
+            de force
+            majeure ou de circonstances imprévues, sans préavis.</p>
+
+        <p>Pour toute question concernant le jeu ou les présentes conditions, veuillez nous contacter depuis le lien
+            suivant :
+            https://x-bar.co/en/contact-us/#.</p>
+        <p> Merci de votre participation et bonne chance !</p>
+
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var returnIcon = document.getElementById("ReturnIcon");
+            returnIcon.addEventListener("click", function () {
+                window.location.href = "./form.html";
+            });
+        });
+    </script>
+</body>
+
+</html>
