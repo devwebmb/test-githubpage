@@ -24,12 +24,12 @@
         </h4>
         <!--jeu roulette-->
         <div id="PlayerRoulette" class="relative">
-            <img src="./assets/images/e-liquide-10ml.png" class="img-roulette absolute">
-            <img src="./assets/images/e-liquide-50ml.png" class="img-roulette absolute">
-            <img src="./assets/images/kit-solo.png" class="img-roulette absolute">
-            <img src="./assets/images/perdu.png" class="img-roulette absolute">
-            <img src="./assets/images/pod.png" class="img-roulette absolute">
-            <img src="./assets/images/x-bar-v2.png" class="img-roulette absolute">
+            <img src="./assets/images/e-liquide-10ml.png" class="img-roulette absolute"><!--25%-->
+            <img src="./assets/images/e-liquide-50ml.png" class="img-roulette absolute"><!--10%-->
+            <img src="./assets/images/kit-solo.png" class="img-roulette absolute"><!--10%-->
+            <img src="./assets/images/perdu.png" class="img-roulette absolute"><!--25%-->
+            <img src="./assets/images/pod.png" class="img-roulette absolute"><!--20%-->
+            <img src="./assets/images/x-bar-v2.png" class="img-roulette absolute"><!--10%-->
         </div>
 
         <!--Bouton pour afficher produit-->
@@ -47,57 +47,84 @@
 
     <script>
 
-        document.addEventListener("DOMContentLoaded", function () {
-            var playerRoulette = document.getElementById("PlayerRoulette");
-            var images = playerRoulette.getElementsByTagName("img");
-            var currentIndex = 0;
-            var intervalId;
-            var button = document.getElementById("BtnEtape1");
-            var couponLink = document.getElementById("CouponLinkContainer");
-            var link = document.getElementById("couponLink")
 
-            var imageTexts = [
-                " 1 E-liquide 10 ml",
-                " 1 E-liquide 50 ml",
-                " 1 Kit solo click&puff",
-                "Une prochaine fois ! ",
-                "1 Pod Click&Puff",
-                "  1 X-bar V2  "
-            ];
+    document.addEventListener("DOMContentLoaded", function () {
+        var playerRoulette = document.getElementById("PlayerRoulette");
+        var images = playerRoulette.getElementsByTagName("img");
+        var currentIndex = 0;
+        var intervalId;
+        var button = document.getElementById("BtnEtape1");
+        var couponLink = document.getElementById("CouponLinkContainer");
+        var link = document.getElementById("couponLink")
 
-            function scrollImages() {
-                images[currentIndex].style.display = "none";
-                currentIndex = (currentIndex + 1) % images.length;
-                images[currentIndex].style.display = "block";
-                couponLink.style.display = "none"
+        var imageTexts = [
+            " 1 E-liquide 10 ml",
+            " 1 E-liquide 50 ml",
+            " 1 Kit solo click&puff",
+            "Une prochaine fois ! ",
+            "1 Pod Click&Puff",
+            "  1 X-bar V2  "
+        ];
+
+        function scrollImages() {
+            images[currentIndex].style.display = "none";
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].style.display = "block";
+            couponLink.style.display = "none"
+        }
+
+        intervalId = setInterval(scrollImages, 40);
+
+        playerRoulette.addEventListener("click", function () {
+            clearInterval(intervalId);
+            for (var i = 0; i < images.length; i++) {
+                images[i].style.display = "none";
+            }
+            var randomNumber = Math.floor(Math.random() * 100) + 1; 
+            var cumulativeProbability = 0; 
+            var selectedImageIndex = -1; 
+
+            // Parcourir les pourcentages de chaque image
+            for (var i = 0; i < images.length; i++) {
+                cumulativeProbability += getImageProbability(images[i]); 
+                if (randomNumber <= cumulativeProbability) {
+                    selectedImageIndex = i;
+                    break;
+                }
             }
 
-            intervalId = setInterval(scrollImages, 40);
+            // Afficher l'image sélectionnée
+            images[selectedImageIndex].style.display = "block";
+            images[selectedImageIndex].classList.add("top--150")
+            couponLink.style.display = "block";
+            button.textContent = "...";
 
-            playerRoulette.addEventListener("click", function () {
-                clearInterval(intervalId);
-                for (var i = 0; i < images.length; i++) {
-                    images[i].style.display = "none";
-                }
-                images[currentIndex].style.display = "block";
-                images[currentIndex].classList.add("top--150")
-
-                // images[currentIndex].classList.add("opacity0");
-                couponLink.style.display = "block";
-                button.textContent = "...";
-
-                setTimeout(function () {
-                    // images[currentIndex].classList.add("opacity-transition");
-                    button.textContent = imageTexts[currentIndex];
-                    images[currentIndex].classList.add("top-50");
-                    images[currentIndex].classList.add("top-transition");
-                }, 500);
-            });
-
-            link.addEventListener('click', () => {
-                window.location.href = "./form.html?" + imageTexts[currentIndex]
-            })
+            setTimeout(function () {
+                button.textContent = imageTexts[selectedImageIndex];
+                images[selectedImageIndex].classList.add("top-50");
+                images[selectedImageIndex].classList.add("top-transition");
+            }, 500);
         });
+
+        link.addEventListener('click', () => {
+            window.location.href = "./form.html?" + imageTexts[currentIndex]
+        });
+
+        // Fonction pour obtenir la probabilité d'une image
+        function getImageProbability(image) {
+            var imageProbabilities = {
+                "e-liquide-10ml.png": 25,
+                "e-liquide-50ml.png":10,
+                "kit-solo.png":10,
+                "perdu.png":25,
+                "pod.png": 20,
+                "x-bar-v2.png":10
+            };
+
+            var imageName = image.src.split("/").pop();
+            return imageProbabilities[imageName] || 0;
+        }
+    });
 
     </script>
 </body>

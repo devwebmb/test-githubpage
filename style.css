@@ -364,6 +364,10 @@ body {
   background-image: url("./assets/images/UserIconGradient.png");
 }
 
+#email:not(:empty) {
+  display: none;
+}
+
 /*erreurs formulaires*/
 
 .error-message {
