@@ -461,6 +461,18 @@ body {
   transition: opacity 1.5s ease-in-out;
 }
 
+.top--150 {
+  top: -150px;
+}
+
+.top-50 {
+  top: 50%;
+}
+
+.top-transition {
+    transition: top 0.5s ease-in-out; /* Transition de mouvement vertical sur 1.5 secondes */
+}
+
 /*fin jeu roulette*/
 
 /*media queries*/
@@ -489,7 +501,15 @@ body {
     font-size: 2.2em;
   }
 
+   #Etape1Container .title-h4-border{
+    font-size: 2.2em;
+    margin-top: 10px;
+   }
+
   #Etape2Container .title-h4 {
+    font-size: 2.2em;
+  }
+  #Etape1Container .title-h4 {
     font-size: 2.2em;
   }
 }

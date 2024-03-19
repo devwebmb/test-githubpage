@@ -72,24 +72,26 @@
                 couponLink.style.display = "none"
             }
 
-            intervalId = setInterval(scrollImages, 400);
+            intervalId = setInterval(scrollImages, 40);
 
             playerRoulette.addEventListener("click", function () {
                 clearInterval(intervalId);
                 for (var i = 0; i < images.length; i++) {
                     images[i].style.display = "none";
                 }
-                // images[currentIndex].style.display = "block";
-                // couponLink.style.display = "block";
-                // button.textContent = imageTexts[currentIndex];
                 images[currentIndex].style.display = "block";
-                images[currentIndex].classList.add("opacity0");
+                images[currentIndex].classList.add("top--150")
+
+                // images[currentIndex].classList.add("opacity0");
                 couponLink.style.display = "block";
+                button.textContent = "...";
 
                 setTimeout(function () {
-                    images[currentIndex].classList.add("opacity-transition");
+                    // images[currentIndex].classList.add("opacity-transition");
                     button.textContent = imageTexts[currentIndex];
-                }, 1500);
+                    images[currentIndex].classList.add("top-50");
+                    images[currentIndex].classList.add("top-transition");
+                }, 500);
             });
 
             link.addEventListener('click', () => {
