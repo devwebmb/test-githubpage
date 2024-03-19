@@ -1,4 +1,12 @@
 <?php
+// Inclure les fichiers PHPMailer
+require './PHPMailer-master/src/PHPMailer.php';
+require './PHPMailer-master/src/SMTP.php';
+require './PHPMailer-master/src/Exception.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupère les données soumises par le formulaire
@@ -13,16 +21,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $message = "Bonjour " . $prenom . ",\n\n";
     $message .= "Merci d'avoir participé au jeu X-BAR.\n\n";
     $message .= "Voici votre coupon de réduction à utiliser sur le site\n";
-    // $message .= "Adresse e-mail : " . $email . "\n";
-    // $message .= "Numéro de téléphone : " . $tel . "\n";
 
-    // Envoyer l'e-mail à l'utilisateur
-    $headers = "From: devwebmb@gmail.com"; // Remplacez par votre adresse e-mail
-    mail($email, $subject, $message, $headers);
+    // Créer une nouvelle instance de PHPMailer
+    $mail = new PHPMailer(true);
 
-    // Redirection vers une page de confirmation ou autre
-    header("Location: index.html");
-    exit;
+    try {
+        // Paramètres SMTP
+        $mail->isSMTP();
+        $mail->Host = 'smtp.ionos.fr'; // Adresse du serveur SMTP
+        $mail->SMTPAuth = true;
+        $mail->Username = 'jeuvapexpo@marketing-xbar.co'; // Adresse e-mail
+        $mail->Password = 'VAPEX24!!'; // Mot de passe
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // Utilisation de SSL/TLS
+        $mail->Port = 465; // Port SMTP
+
+        // Destinataire
+        $mail->setFrom('jeuvapexpo@marketing-xbar.co', 'X-BAR');
+        $mail->addAddress($email, $prenom);
+
+        // Contenu du message
+        $mail->isHTML(false);
+        $mail->Subject = $subject;
+        $mail->Body = $message;
+
+        // Envoi de l'e-mail
+        $mail->send();
+
+        // Écrire les données dans le fichier CSV
+        $csvLine = "$email,$tel,$prenom\n";
+        $file = fopen("donnees.csv", "a");
+        if ($file) {
+            fwrite($file, $csvLine);
+            fclose($file);
+        } else {
+            echo "Erreur: Impossible d'ouvrir le fichier.";
+        }
+
+        // Redirection vers une page de confirmation ou autre
+        header("Location: index.html");
+        exit;
+    } catch (Exception $e) {
+        echo "Erreur lors de l'envoi du message : {$mail->ErrorInfo}";
+    }
 }
 ?>
+
+
 

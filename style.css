@@ -234,7 +234,7 @@ body {
 }
 
 #BtnEtape1 {
-  font-family: "BebasNeue-Regular";
+  font-family: "BebasNeue-regular";
   font-size: 1.7rem;
   color: #42cbe2;
   border-radius: 50%;
@@ -316,12 +316,11 @@ body {
   border: none;
   background-color: white;
   color: #42cbe2;
-  font-family: "Bebas-Neue";
+  font-family: "BebasNeue-regular";
   font-size: 1.5em;
   padding: 7px 20px;
   border-radius: 25px;
   text-transform: uppercase;
-  font-weight: bold;
 }
 
 #email {

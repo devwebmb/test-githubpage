@@ -49,82 +49,89 @@
 
 
     document.addEventListener("DOMContentLoaded", function () {
-        var playerRoulette = document.getElementById("PlayerRoulette");
-        var images = playerRoulette.getElementsByTagName("img");
-        var currentIndex = 0;
-        var intervalId;
-        var button = document.getElementById("BtnEtape1");
-        var couponLink = document.getElementById("CouponLinkContainer");
-        var link = document.getElementById("couponLink")
+            var playerRoulette = document.getElementById("PlayerRoulette");
+            var images = playerRoulette.getElementsByTagName("img");
+            var currentIndex = 0;
+            var intervalId;
+            var button = document.getElementById("BtnEtape1");
+            var couponLink = document.getElementById("CouponLinkContainer");
+            var link = document.getElementById("couponLink")
 
-        var imageTexts = [
-            " 1 E-liquide 10 ml",
-            " 1 E-liquide 50 ml",
-            " 1 Kit solo click&puff",
-            "Une prochaine fois ! ",
-            "1 Pod Click&Puff",
-            "  1 X-bar V2  "
-        ];
+            var imageTexts = [
+                " 1 E-liquide 10 ml",
+                " 1 E-liquide 50 ml",
+                " 1 Kit solo click&puff",
+                "Une prochaine fois ! ",
+                "1 Pod Click&Puff",
+                "  1 X-bar V2  "
+            ];
 
-        function scrollImages() {
-            images[currentIndex].style.display = "none";
-            currentIndex = (currentIndex + 1) % images.length;
-            images[currentIndex].style.display = "block";
-            couponLink.style.display = "none"
-        }
+            var imageClicked = false; // Indicateur pour vérifier si une image a déjà été sélectionnée
 
-        intervalId = setInterval(scrollImages, 40);
-
-        playerRoulette.addEventListener("click", function () {
-            clearInterval(intervalId);
-            for (var i = 0; i < images.length; i++) {
-                images[i].style.display = "none";
+            function scrollImages() {
+                images[currentIndex].style.display = "none";
+                currentIndex = (currentIndex + 1) % images.length;
+                images[currentIndex].style.display = "block";
+                couponLink.style.display = "none"
             }
-            var randomNumber = Math.floor(Math.random() * 100) + 1; 
-            var cumulativeProbability = 0; 
-            var selectedImageIndex = -1; 
 
-            // Parcourir les pourcentages de chaque image
-            for (var i = 0; i < images.length; i++) {
-                cumulativeProbability += getImageProbability(images[i]); 
-                if (randomNumber <= cumulativeProbability) {
-                    selectedImageIndex = i;
-                    break;
+            intervalId = setInterval(scrollImages, 40);
+
+            playerRoulette.addEventListener("click", function () {
+                if (!imageClicked) { // Vérifie si aucune image n'a été sélectionnée précédemment
+                    clearInterval(intervalId);
+                    for (var i = 0; i < images.length; i++) {
+                        images[i].style.display = "none";
+                    }
+                    var randomNumber = Math.floor(Math.random() * 100) + 1;
+                    var cumulativeProbability = 0;
+                    var selectedImageIndex = -1;
+
+                    // Parcourir les pourcentages de chaque image
+                    for (var i = 0; i < images.length; i++) {
+                        cumulativeProbability += getImageProbability(images[i]);
+                        if (randomNumber <= cumulativeProbability) {
+                            selectedImageIndex = i;
+                            break;
+                        }
+                    }
+
+                    // Afficher l'image sélectionnée
+                    images[selectedImageIndex].style.display = "block";
+                    images[selectedImageIndex].classList.add("top--150")
+                    couponLink.style.display = "block";
+                    button.textContent = "...";
+
+                    setTimeout(function () {
+                        button.textContent = imageTexts[selectedImageIndex];
+                        images[selectedImageIndex].classList.add("top-50");
+                        images[selectedImageIndex].classList.add("top-transition");
+                    }, 500);
+
+                    imageClicked = true; // Met à jour l'indicateur pour indiquer qu'une image a été sélectionnée
                 }
+            });
+
+            link.addEventListener('click', () => {
+                window.location.href = "./form.html?" + imageTexts[currentIndex]
+            });
+
+            // Fonction pour obtenir la probabilité d'une image
+            function getImageProbability(image) {
+                var imageProbabilities = {
+                    "e-liquide-10ml.png": 25,
+                    "e-liquide-50ml.png": 10,
+                    "kit-solo.png": 10,
+                    "perdu.png": 25,
+                    "pod.png": 20,
+                    "x-bar-v2.png": 10
+                };
+
+                var imageName = image.src.split("/").pop();
+                return imageProbabilities[imageName] || 0;
             }
-
-            // Afficher l'image sélectionnée
-            images[selectedImageIndex].style.display = "block";
-            images[selectedImageIndex].classList.add("top--150")
-            couponLink.style.display = "block";
-            button.textContent = "...";
-
-            setTimeout(function () {
-                button.textContent = imageTexts[selectedImageIndex];
-                images[selectedImageIndex].classList.add("top-50");
-                images[selectedImageIndex].classList.add("top-transition");
-            }, 500);
         });
 
-        link.addEventListener('click', () => {
-            window.location.href = "./form.html?" + imageTexts[currentIndex]
-        });
-
-        // Fonction pour obtenir la probabilité d'une image
-        function getImageProbability(image) {
-            var imageProbabilities = {
-                "e-liquide-10ml.png": 25,
-                "e-liquide-50ml.png":10,
-                "kit-solo.png":10,
-                "perdu.png":25,
-                "pod.png": 20,
-                "x-bar-v2.png":10
-            };
-
-            var imageName = image.src.split("/").pop();
-            return imageProbabilities[imageName] || 0;
-        }
-    });
 
     </script>
 </body>
