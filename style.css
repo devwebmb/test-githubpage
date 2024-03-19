@@ -139,7 +139,7 @@ table {
 /*global*/
 body {
   background-color: #42cbe2;
-  height: 100vh;
+  /* height: 100vh; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -172,16 +172,15 @@ body {
 }
 
 #Etape1Container {
-        /* height: 100vh;   */
-display: flex;
-flex-direction: column;
-justify-content: center;
-
+  /* height: 100vh;   */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 #Etape2Container {
-    /* height: 100vh;   */
-    display: flex;
+  /* height: 100vh;   */
+  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -216,10 +215,10 @@ justify-content: center;
 }
 
 #PlayerRoulette {
-  height: 350px;
-  width: 350px;
+  height: 300px;
+  width: 300px;
   background-color: white;
-  margin:20px auto;
+  margin: 20px auto;
   background: linear-gradient(white, white) padding-box,
     linear-gradient(to right, #7d67d9, #08d3f7) border-box;
   border-radius: 50em;
@@ -242,7 +241,8 @@ justify-content: center;
   padding: 30px 100px;
   border: none;
   background-color: white;
-  min-width: 300px;
+  /* min-width: 300px; */
+  width: 100%;
 }
 
 #BtnEtape1::before {
@@ -367,75 +367,79 @@ justify-content: center;
 /*erreurs formulaires*/
 
 .error-message {
-  color: #D73939;
+  color: #d73939;
   font-size: 1.1em;
   line-height: 2em;
 }
 .error-message-cgv {
-  color: #D73939;
+  color: #d73939;
   font-size: 1.1em;
   line-height: 2em;
- margin-left: 65px;
- margin-bottom: 30px;
+  margin-left: 65px;
+  margin-bottom: 30px;
 }
 
 .error {
-     border: 2px solid #D73939!important;
+  border: 2px solid #d73939 !important;
 }
 #email.error {
-      background-image: url("./assets/images/MailErrorIcon.png");
+  background-image: url("./assets/images/MailErrorIcon.png");
 }
 #tel.error {
-      background-image: url("./assets/images/PhoneIconError.png");
+  background-image: url("./assets/images/PhoneIconError.png");
 }
 #prenom.error {
-      background-image: url("./assets/images/MailErrorIcon.png");
+  background-image: url("./assets/images/MailErrorIcon.png");
 }
 
 /*fin etape 2*/
 
 /*CGV*/
 
+#CgvContainer {
+  padding: 0 15px;
+}
+
 #CgvContainer p {
-    margin-top: 35px;
-    font-family: "Poppins-Regular";
-    font-size: 1.3em;
-    text-align: justify;
+  margin-top: 35px;
+  font-family: "Poppins-Regular";
+  font-size: 1.3em;
+  text-align: justify;
 }
 
 #CgvContainer #Logo {
-    margin-top: 35px !important;
+  margin-top: 35px !important;
 }
 
 #CgvFirstParagraph {
-    width: 60%;
-    margin: auto;
-    text-align: center !important;
+  width: 60%;
+  margin: auto;
+  text-align: center !important;
 }
 
 #CgvContainer p:last-of-type {
-    margin-bottom: 35px;
+  margin-bottom: 35px;
 }
 
 #ReturnIcon {
-    top: 20px;
-    right: 10%;
-    cursor: pointer;
+  top: 20px;
+  right: 10%;
+  cursor: pointer;
 }
 /*fin CGV*/
 
 /*jeu roulette*/
- .img-roulette {
+.img-roulette {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-} 
+}
 
- #PlayerRoulette img:not(:first-child) {
-    display: none;
-}  
+#PlayerRoulette img:not(:first-child) {
+  display: none;
+}
 
- #PlayerRoulette {
+#PlayerRoulette {
   overflow: hidden;
 }
 
@@ -449,5 +453,49 @@ justify-content: center;
   transform: translateX(-50%);
   cursor: pointer;
 }
+.opacity0 {
+  opacity: 0;
+}
+.opacity-transition {
+  opacity: 1;
+  transition: opacity 1.5s ease-in-out;
+}
 
 /*fin jeu roulette*/
+
+/*media queries*/
+
+@media screen and (min-width: 768px) {
+  body {
+    height: 100vh;
+  }
+
+  #PlayerRoulette {
+    width: 450px;
+    height: 450px;
+  }
+
+  #ContactForm {
+    min-width: 600px !important;
+  }
+
+  #ContactForm input {
+    padding: 15px 15px 15px 35px
+  }
+
+  #Etape2Container .title-h4-border {
+    margin-top: 15px;
+    margin-bottom: 40px;
+    font-size: 2.2em;
+  }
+
+  #Etape2Container .title-h4 {
+    font-size: 2.2em;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #Etape2Container {
+    margin-top: 40px;
+  }
+}

@@ -79,9 +79,17 @@
                 for (var i = 0; i < images.length; i++) {
                     images[i].style.display = "none";
                 }
+                // images[currentIndex].style.display = "block";
+                // couponLink.style.display = "block";
+                // button.textContent = imageTexts[currentIndex];
                 images[currentIndex].style.display = "block";
+                images[currentIndex].classList.add("opacity0");
                 couponLink.style.display = "block";
-                button.textContent = imageTexts[currentIndex];
+
+                setTimeout(function () {
+                    images[currentIndex].classList.add("opacity-transition");
+                    button.textContent = imageTexts[currentIndex];
+                }, 1500);
             });
 
             link.addEventListener('click', () => {
