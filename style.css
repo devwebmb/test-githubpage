@@ -139,7 +139,7 @@ table {
 /*global*/
 body {
   background-color: #42cbe2;
-  /* height: 100vh; */
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -172,14 +172,15 @@ body {
 }
 
 #Etape1Container {
-        height: 100vh;  
+        /* height: 100vh;   */
 display: flex;
 flex-direction: column;
 justify-content: center;
+
 }
 
 #Etape2Container {
-    height: 100vh;  
+    /* height: 100vh;   */
     display: flex;
   justify-content: center;
   align-items: center;

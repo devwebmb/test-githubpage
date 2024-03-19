@@ -72,7 +72,7 @@
                 couponLink.style.display = "none"
             }
 
-            intervalId = setInterval(scrollImages, 40);
+            intervalId = setInterval(scrollImages, 400);
 
             playerRoulette.addEventListener("click", function () {
                 clearInterval(intervalId);
@@ -88,38 +88,6 @@
                 window.location.href = "./form.html?" + imageTexts[currentIndex]
             })
         });
-        // document.addEventListener("DOMContentLoaded", function () {
-        //     var playerRoulette = document.getElementById("PlayerRoulette");
-        //     var images = playerRoulette.getElementsByTagName("img");
-        //     var animationDuration = 2000; // Durée de l'animation en millisecondes
-        //     var initialTop = -100; // Position initiale des images en pourcentage (au-dessus de la div)
-
-        //     // Fonction pour démarrer l'animation de chaque image
-        //     function startAnimation(index) {
-        //         images[index].style.top = initialTop + "%"; // Réinitialiser la position de l'image au-dessus de la div
-        //         setTimeout(function () {
-        //             images[index].style.transition = "top " + animationDuration / 1000 + "s ease-in-out"; // Définir la transition CSS
-        //             images[index].style.top = "200%"; // Déplacer l'image vers le bas de la div
-
-        //             // Si c'est la dernière image, recommencer à la première image
-        //             if (index === images.length - 1) {
-        //                 setTimeout(startAnimations, animationDuration);
-        //             }
-        //         }, index * animationDuration); // Démarrer l'animation de chaque image avec un délai basé sur l'index
-        //     }
-
-        //     // Fonction pour démarrer les animations pour toutes les images
-        //     function startAnimations() {
-        //         for (var i = 0; i < images.length; i++) {
-        //             startAnimation(i); // Démarrer l'animation de chaque image
-        //         }
-        //     }
-
-        //     // Appeler la fonction pour démarrer les animations
-        //     startAnimations();
-        // });
-
-
 
     </script>
 </body>
